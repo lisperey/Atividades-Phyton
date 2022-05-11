@@ -1,0 +1,19 @@
+cores = 'azul'
+
+letra = str(input('Digite uma letra: '))
+
+while list(cores):
+    if letra.lower() in list(cores[0]):
+        print(f'{letra} _ _ _')
+        letra = str(input('Digite outra letra: '))
+    elif letra.lower() in list(cores[1]):
+        print(f'_ {letra} _ _ ')
+        letra = str(input('Digite outra letra: '))
+    elif letra.lower() in list(cores[2]):
+        print(f'_ _ {letra} _ ')
+        letra = str(input('Digite outra letra: '))
+    elif letra.lower() in list(cores[3]):
+        print(f'_ _ _ {letra}')
+        letra = str(input('Digite outra letra: '))
+    else:
+        letra = str(input('Letra errada. \nDigite outra letra: '))
