@@ -1,19 +1,42 @@
-cores = 'azul'
+import random
 
-letra = str(input('Digite uma letra: '))
+escolha_categoria = {'frutas': ['banana', 'maçã', 'morango'],
+                     'animais': ['leão', 'onça', 'elefante'],
+                     'cores': ['azul', 'rosa', 'roxo', 'preto']}
 
-while list(cores):
-    if letra.lower() in list(cores[0]):
-        print(f'{letra} _ _ _')
-        letra = str(input('Digite outra letra: '))
-    elif letra.lower() in list(cores[1]):
-        print(f'_ {letra} _ _ ')
-        letra = str(input('Digite outra letra: '))
-    elif letra.lower() in list(cores[2]):
-        print(f'_ _ {letra} _ ')
-        letra = str(input('Digite outra letra: '))
-    elif letra.lower() in list(cores[3]):
-        print(f'_ _ _ {letra}')
-        letra = str(input('Digite outra letra: '))
+escolha_usuario_ct = str(input('Por favor, escolha a categoria da palavra '
+                                   ' \nopções: frutas, animais e cores: ')).lower()
+
+palavra = random.choice(escolha_categoria.get(escolha_usuario_ct))
+
+
+
+print(f'A palavra escolhida tem {len(palavra)} letras.')
+
+letra_usuario = str(input('Escolha uma letra: ')).lower()
+letras_acerto = ''
+letras_erro = ''
+erro = 0
+acerto = 0
+
+while acerto != len(palavra)-1 and erro != 5:
+
+    if letra_usuario in palavra:
+        letras_acerto += letra_usuario
+        print(f'Letras certas: {letras_acerto}')
+        print('Letra certa')
+        letra_usuario = str(input('Escolha uma letra: ')).lower()
+        acerto += 1
+
     else:
-        letra = str(input('Letra errada. \nDigite outra letra: '))
+        print('letra errada')
+        letras_erro += letra_usuario
+        print(f'Letras erradas: {letras_erro}')
+        letra_usuario = str(input('Escolha uma letra: ')).lower()
+        erro += 1
+        if erro == 5:
+            print('Você perdeu.')
+
+
+
+print(f'A palavra é {palavra}')
