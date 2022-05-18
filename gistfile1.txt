@@ -1,0 +1,92 @@
+import random
+#biblioteca criada para armazenas as categorias e as palavras
+escolha_categoria = {'frutas': ['banana', 'maçã', 'morango'],
+                     'animais': ['leão', 'onça', 'elefante'],
+                     'cores': ['azul', 'rosa', 'roxo', 'preto']}
+
+#input para escolher a caregoria
+escolha_usuario_ct = str(input('Por favor, escolha a categoria da palavra '
+                                   ' \n[frutas, animais e cores]: ')).lower()
+
+#função random para escolher uma palavra aleatoria na biblioteca
+palavra = random.choice(escolha_categoria.get(escolha_usuario_ct))
+
+#print da quantidade de letras
+print(f'A palavra escolhida tem {len(palavra)} letras.')
+
+#desenho da forca com o boneco
+forca = """ 
+|--¬
+|  |
+   |  """
+zero = ''
+cabeça = """ 
+   O """
+corpo= """ 
+   O
+   |
+   | """
+braco_esq = """ 
+   O
+ / |
+   | """
+braco_dir =  """ 
+   O
+ / | \\
+   | """
+perna_esq = """  
+   O
+ / | \\
+   |
+  /  """
+perna_dir = """  
+   O
+ / | \\
+   |
+  / \\"""
+
+#lista para armazenas as variaveis da forca e do boneco
+boneco = [zero, cabeça, corpo, braco_esq, braco_dir, perna_esq, perna_dir]
+
+#variaveis vazias para contagem
+letras_acertadas = ''
+letras_erradas = ''
+erro = 0
+acerto = 0
+
+'''loop criado para quando o número de acerto for diferente do tamanho 
+da palavra e erro for diferente de 6'''
+while acerto != len(palavra) and erro != 6:
+    tracejado = ''
+#criando o tracejado para esconder as letras
+    for letra_usuario in palavra:
+       if letra_usuario in letras_acertadas:
+            tracejado += letra_usuario
+       else:
+            tracejado +='_'
+
+#exibição do boneco, do tracejado, das letras erradas e do input solicitando as letras
+    print(forca+boneco[erro])
+    print(tracejado)
+    print(f'Letras erradas: {letras_erradas}')
+    letra_usuario = str(input('Escolha uma letra: ')).lower()
+
+#condições para contar e verificar as letras certas e as erradas sendo informa quando perdeu e ganhou
+    if letra_usuario in palavra:
+        letras_acertadas += letra_usuario
+        print('Letra certa')
+        acerto += 1
+        if acerto == len(palavra):
+            print('Parabéns, você ganhou a forca.')
+
+
+    else:
+        print('letra errada')
+        letras_erradas += letra_usuario
+        erro += 1
+        if erro == 6:
+            print('Você perdeu.')
+
+
+#print da palavra escolhida aleatoria pelo programa 
+print(f'A palavra é {palavra}')
