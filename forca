@@ -5,36 +5,76 @@ escolha_categoria = {'frutas': ['banana', 'maçã', 'morango'],
                      'cores': ['azul', 'rosa', 'roxo', 'preto']}
 
 escolha_usuario_ct = str(input('Por favor, escolha a categoria da palavra '
-                                   ' \nopções: frutas, animais e cores: ')).lower()
+                                   ' \n[frutas, animais e cores]: ')).lower()
 
 palavra = random.choice(escolha_categoria.get(escolha_usuario_ct))
 
-
-
 print(f'A palavra escolhida tem {len(palavra)} letras.')
 
-letra_usuario = str(input('Escolha uma letra: ')).lower()
-letras_acerto = ''
-letras_erro = ''
+forca = """ 
+|--¬
+|  |
+   |  """
+zero = ''
+cabeça = """ 
+   O """
+corpo= """ 
+   O
+   |
+   | """
+braco_esq = """ 
+   O
+ / |
+   | """
+braco_dir =  """ 
+   O
+ / | \\
+   | """
+perna_esq = """  
+   O
+ / | \\
+   |
+  /  """
+perna_dir = """  
+   O
+ / | \\
+   |
+  / \\"""
+
+boneco = [zero, cabeça, corpo, braco_esq, braco_dir, perna_esq, perna_dir]
+
+letras_acertadas = ''
+letras_erradas = ''
 erro = 0
 acerto = 0
 
-while acerto != len(palavra)-1 and erro != 5:
+while acerto != len(palavra) and erro != 6:
+    tracejado = ''
+
+    for letra_usuario in palavra:
+       if letra_usuario in letras_acertadas:
+            tracejado += letra_usuario
+       else:
+            tracejado +='_'
+    print(forca+boneco[erro])
+    print(tracejado)
+    print(f'Letras certas: {letras_acertadas}')
+    print(f'Letras erradas: {letras_erradas}')
+    letra_usuario = str(input('Escolha uma letra: ')).lower()
 
     if letra_usuario in palavra:
-        letras_acerto += letra_usuario
-        print(f'Letras certas: {letras_acerto}')
+        letras_acertadas += letra_usuario
         print('Letra certa')
-        letra_usuario = str(input('Escolha uma letra: ')).lower()
         acerto += 1
+        if acerto == len(palavra):
+            print('Parabéns, você ganhou a forca.')
+
 
     else:
         print('letra errada')
-        letras_erro += letra_usuario
-        print(f'Letras erradas: {letras_erro}')
-        letra_usuario = str(input('Escolha uma letra: ')).lower()
+        letras_erradas += letra_usuario
         erro += 1
-        if erro == 5:
+        if erro == 6:
             print('Você perdeu.')
 
 
