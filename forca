@@ -19,10 +19,11 @@ try:
 
 except Exception as e:
     while escolha_usuario_ct not in escolha_categoria:
-        print('Opção invalida')
         print()
-        escolha_usuario_ct = str(input('Por favor, escolha a categoria da palavra'
-                                       '\nentre frutas, animais e cores: ')).lower()
+        print('Opção invalida...')
+        print()
+        escolha_usuario_ct = str(input('Por favor, escolha a categoria da palavra entre frutas, animais e cores'
+                                   '\n(escreva a categoria conforme a descrição): ')).lower()
 
 # função random para escolher uma palavra aleatoria na biblioteca fora do teste para da continuidade ao código
 palavra = random.choice(escolha_categoria.get(escolha_usuario_ct))
