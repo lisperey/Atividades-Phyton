@@ -1,126 +1,146 @@
 import random
+# função do jogo da forca
+def jogo_forca():
+    # teste de erro para erro de type na opção digitada
+    try:
+        # biblioteca criada para armazenas as categorias e as palavras
+        escolha_categoria = {'frutas': ['banana', 'maçã', 'morango', 'uva', 'abacaxi', 'mamão', ],
+                             'animais': ['leão', 'onça', 'elefante', 'gato', 'cachorro', ],
+                             'cores': ['roxo', 'azul', 'preto', 'branco', 'rosa', 'vermelho']}
 
-#teste de erro para erro de type na opção digitada
-try:
-    # biblioteca criada para armazenas as categorias e as palavras
-    escolha_categoria = {'frutas': ['banana', 'maçã', 'morango', 'uva', 'abacaxi', 'mamão', ],
-                         'animais': ['leão', 'onça', 'elefante', 'gato', 'cachorro', ],
-                         'cores': ['roxo', 'azul', 'preto', 'branco', 'rosa', 'vermelho']}
-
-    # input para escolher a caregoria
-    escolha_usuario_ct = str(input('Por favor, escolha a categoria da palavra entre frutas, animais e cores'
-                                   '\n(escreva a categoria conforme a descrição): ')).lower()
-
-    # função random para escolher uma palavra aleatoria na biblioteca
-    palavra = random.choice(escolha_categoria.get(escolha_usuario_ct))
-
-
-
-
-except Exception as e:
-    while escolha_usuario_ct not in escolha_categoria:
-        print()
-        print('Opção invalida...')
+        # input para escolher a caregoria
         print()
         escolha_usuario_ct = str(input('Por favor, escolha a categoria da palavra entre frutas, animais e cores'
-                                   '\n(escreva a categoria conforme a descrição): ')).lower()
+                                       '\n(escreva a categoria conforme a descrição): ')).lower()
 
-# função random para escolher uma palavra aleatoria na biblioteca fora do teste para da continuidade ao código
-palavra = random.choice(escolha_categoria.get(escolha_usuario_ct))
-
-print()
-
-#printe para informar a quantidade total de letras na palavras
-print(f'A palavra escolhida tem {len(palavra)} letras.')
-
-#desenho da forca com o boneco
-forca = """ 
-|--¬
-|  |  """
-zero = ''
-cabeça = """ 
-   O """
-corpo= """ 
-   O
-   |
-   | """
-braco_esq = """ 
-   O
- / |
-   | """
-braco_dir =  """ 
-   O
- / | \\
-   | """
-perna_esq = """  
-   O
- / | \\
-   |
-  /  """
-perna_dir = """  
-   O
- / | \\
-   |
-  / \\"""
-
-#lista para armazenas as variaveis da forca e do boneco
-boneco = [zero, cabeça, corpo, braco_esq, braco_dir, perna_esq, perna_dir]
-
-#variaveis vazias para contagem
-letras_acertadas = ''
-letras_erradas = ''
-erro = 0
-acerto = 0
+        # função random para escolher uma palavra aleatoria na biblioteca
+        palavra = random.choice(escolha_categoria.get(escolha_usuario_ct))
 
 
-'''loop criado para quando o número de acerto for diferente do tamanho 
-da palavra e erro for diferente de 6'''
-while acerto != len(palavra) and erro != 6:
-    tracejado = ''
-#criando o tracejado para esconder as letras
-    for letra_usuario in palavra:
-       if letra_usuario in letras_acertadas:
-            tracejado += letra_usuario
 
-       else:
-            tracejado +='_'
 
-# printe da forca mais as peças do boneco e o tracejado
-    print(forca + boneco[erro])
+    except Exception as e:
+        while escolha_usuario_ct not in escolha_categoria:
+            print()
+            print('Ops... Formato inválido...')
+            print()
+            escolha_usuario_ct = str(input('Por favor, escolha a categoria da palavra entre frutas, animais e cores'
+                                           '\n(escreva a categoria conforme a descrição): ')).lower()
+
+    # função random para escolher uma palavra aleatoria na biblioteca fora do teste para da continuidade ao código
+    palavra = random.choice(escolha_categoria.get(escolha_usuario_ct))
+
     print()
-    print(tracejado)
-    print(f'Letras erradas: {letras_erradas}')
 
-#exibição do input solicitando as letras
+    # printe para informar a quantidade total de letras na palavras
+    print(f'A palavra escolhida tem {len(palavra)} letras.')
 
-    letra_usuario = str(input('Escolha uma letra: ')).lower()
+    # desenho da forca com o boneco
+    forca = """ 
+    |--¬
+    |  |  """
+    zero = ''
+    cabeça = """ 
+       O """
+    corpo = """ 
+       O
+       |
+       | """
+    braco_esq = """ 
+       O
+     / |
+       | """
+    braco_dir = """ 
+       O
+     / | \\
+       | """
+    perna_esq = """  
+       O
+     / | \\
+       |
+      /  """
+    perna_dir = """  
+       O
+     / | \\
+       |
+      / \\"""
+
+    # lista para armazenas as variaveis da forca e do boneco
+    boneco = [zero, cabeça, corpo, braco_esq, braco_dir, perna_esq, perna_dir]
+
+    # variaveis vazias para contagem
+    letras_acertadas = ''
+    letras_erradas = ''
+    erro = 0
+    acerto = 0
+
+    '''loop criado para quando o número de acerto for diferente do tamanho 
+    da palavra e erro for diferente de 6'''
+    while acerto != len(palavra) and erro != 6:
+        tracejado = ''
+        # criando o tracejado para esconder as letras
+        for letra_usuario in palavra:
+            if letra_usuario in letras_acertadas:
+                tracejado += letra_usuario
+
+            else:
+                tracejado += '_'
+
+        # printe da forca mais as peças do boneco e o tracejado
+        print(forca + boneco[erro])
+        print()
+        print(tracejado)
+        print(f'Letras erradas: {letras_erradas}')
+
+        # exibição do input solicitando as letras
+
+        letra_usuario = str(input('Escolha uma letra: ')).lower()
+
+        # condições para contar e verificar as letras certas e as erradas sendo informa quando perdeu e ganhou
+        if letra_usuario in palavra:
+            if letra_usuario in letras_acertadas:
+                print()
+                print(f'A lentra {letra_usuario.upper()} já está marcada como correta...')
+                acerto -= 1 * list(palavra).count(letra_usuario)
+            acerto += 1 * list(palavra).count(letra_usuario)
+            letras_acertadas += letra_usuario
+            if acerto == len(palavra):
+                print('Parabéns, você ganhou!')
+            elif letra_usuario == palavra:
+                print('Parabens, você ganhou!')
+                break
+        elif len(letra_usuario) > 1 and letra_usuario != palavra:
+            print('Ops... Formato inválido...')
+        else:
+            if letra_usuario in letras_erradas:
+                print()
+                print(f'A letra {letra_usuario.upper()} já foi usada...')
+                continue
+            print()
+            print(f'Não tem a letra {letra_usuario.upper()} na palavra...')
+            erro += 1
+            letras_erradas += letra_usuario
+            if erro == 6:
+                print()
+                print('Poxaaaaaaa, você perdeu!!!')
+
+    # print da palavra escolhida aleatoria pelo programa
+    print(f'A palavra é {palavra.upper()}.')
+# função para reiniciar o jogo da forca
+def fim_jogo():
+    while True:
+        print()
+        novo_jogo = int(input('Deseja jogar novamente?\n'
+                              'Digite 1 para sim ou digite 2 para não: '))
+        if novo_jogo == 1:
+            jogo_forca()
+        elif novo_jogo == 2:
+            exit('Obrigado por jogar a forca by Filipe e Rafael.')
+        else:
+            print()
+            print('Ops... opção inválida...')
+            fim_jogo()
 
 
-#condições para contar e verificar as letras certas e as erradas sendo informa quando perdeu e ganhou
-    if letra_usuario in palavra:
-        if letra_usuario in letras_acertadas:
-            print(f'A lentra {letra_usuario.upper()} já está marcada como correta...')
-            acerto -= 1 * list(palavra).count(letra_usuario)
-        acerto += 1 * list(palavra).count(letra_usuario)
-        letras_acertadas += letra_usuario
-        if acerto == len(palavra):
-            print('Parabéns, você ganhou a forca.')
-
-    else:
-        if letra_usuario in letras_erradas:
-            print(f'A letra {letra_usuario.upper()} já foi usada...')
-            continue
-        print(f'Não tem a letra {letra_usuario.upper()} na palavra...')
-        erro += 1
-        letras_erradas += letra_usuario
-        if erro == 6:
-            print('Poxaaaaaaa, você perdeu!!!')
-
-
-
-
-
-
-
-#print da palavra escolhida aleatoria pelo programa
-print(f'A palavra é {palavra.upper()}.')
+jogo_forca()
+fim_jogo()
