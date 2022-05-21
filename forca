@@ -130,11 +130,11 @@ def jogo_forca():
 def fim_jogo():
     while True:
         print()
-        novo_jogo = int(input('Deseja jogar novamente?\n'
-                              'Digite 1 para sim ou digite 2 para não: '))
-        if novo_jogo == 1:
+        novo_jogo = input('Deseja jogar novamente?\n'
+                              'Digite 1 para sim ou digite 2 para não: ')
+        if novo_jogo == '1':
             jogo_forca()
-        elif novo_jogo == 2:
+        elif novo_jogo == '2':
             exit('Obrigado por jogar a forca by Filipe e Rafael.')
         else:
             print()
