@@ -1,3 +1,17 @@
+print(
+    '>>>>>>>>>>>>>>>>>>>>      UNIESP      <<<<<<<<<<<<<<<<<<<<'
+    '\n#               INTRODUÇÃO A PROGRAMAÇÃO                 #'
+    '\n#                                                        #'
+    '\n#                    JOGO DA FORCA                       #'
+    '\n#                                                        #'
+    '\n#   GRUPO:                                               #'
+    '\n#     FILIPE ROSA- 2022111510002@iesp.edu.br;            #'
+    '\n#     RAFAEL DIAS- 2022111510003@iesp.edu.br.            #'
+    '\n#                                                        #'
+    '\n##########################################################')
+
+
+
 import random
 # função do jogo da forca
 def jogo_forca():
@@ -11,7 +25,7 @@ def jogo_forca():
         # input para escolher a caregoria
         print()
         escolha_usuario_ct = str(input('Por favor, escolha a categoria da palavra entre frutas, animais e cores'
-                                       '\n(escreva a categoria conforme a descrição): ')).lower()
+                                       '\n(escreva a categoria conforme a descrição): ')).lower().strip()
 
         # função random para escolher uma palavra aleatoria na biblioteca
         palavra = random.choice(escolha_categoria.get(escolha_usuario_ct))
@@ -25,7 +39,7 @@ def jogo_forca():
             print('Ops... Formato inválido...')
             print()
             escolha_usuario_ct = str(input('Por favor, escolha a categoria da palavra entre frutas, animais e cores'
-                                           '\n(escreva a categoria conforme a descrição): ')).lower()
+                                           '\n(escreva a categoria conforme a descrição): ')).lower().strip()
 
     # função random para escolher uma palavra aleatoria na biblioteca fora do teste para da continuidade ao código
     palavra = random.choice(escolha_categoria.get(escolha_usuario_ct))
@@ -91,10 +105,11 @@ def jogo_forca():
         print()
         print(tracejado)
         print(f'Letras erradas: {letras_erradas}')
+        print(f'Letras acertadas: {letras_acertadas}')
 
         # exibição do input solicitando as letras
 
-        letra_usuario = str(input('Escolha uma letra: ')).lower()
+        letra_usuario = str(input('Escolha uma letra: ')).lower().strip()
 
         # condições para contar e verificar as letras certas e as erradas sendo informa quando perdeu e ganhou
         if letra_usuario in palavra:
@@ -103,7 +118,7 @@ def jogo_forca():
                 print(f'A lentra {letra_usuario.upper()} já está marcada como correta...')
                 acerto -= 1 * list(palavra).count(letra_usuario)
             acerto += 1 * list(palavra).count(letra_usuario)
-            letras_acertadas += letra_usuario
+            letras_acertadas += letra_usuario + ', '
             if acerto == len(palavra):
                 print('Parabéns, você ganhou!')
             elif letra_usuario == palavra:
@@ -119,7 +134,7 @@ def jogo_forca():
             print()
             print(f'Não tem a letra {letra_usuario.upper()} na palavra...')
             erro += 1
-            letras_erradas += letra_usuario
+            letras_erradas += letra_usuario + ', '
             if erro == 6:
                 print()
                 print('Poxaaaaaaa, você perdeu!!!')
@@ -131,7 +146,7 @@ def fim_jogo():
     while True:
         print()
         novo_jogo = input('Deseja jogar novamente?\n'
-                              'Digite 1 para sim ou digite 2 para não: ')
+                              'Digite 1 para sim ou digite 2 para não: ').strip()
         if novo_jogo == '1':
             jogo_forca()
         elif novo_jogo == '2':
