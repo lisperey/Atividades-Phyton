@@ -1,3 +1,5 @@
-# Jogo da Forca
+# Praticando...
 
-- Uma forca feita utilizando a linguagem python
+- Pilha
+- Fila
+
