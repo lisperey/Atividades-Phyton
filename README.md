@@ -1,3 +1,3 @@
-# Atividades-Phyton
+# Jogo da Forca
 
-Uma forca feita em python
+- Uma forca feita utilizando a linguagem python
